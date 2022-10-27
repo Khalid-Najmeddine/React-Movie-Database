@@ -1,10 +1,14 @@
 import type { NextPage } from 'next'
+// Components
+import Header from "../components/Header/Header";
 
-
-function Home() {
-  return (
-    <main> RMDB </main>
+const Home: NextPage = () => {
+  return ( 
+    <main className="relative h-screen overflow-y-scroll"> 
+      <Header />
+      RMDB 
+    </main>
   )
 }
 
-export default Home 
+export default Home
