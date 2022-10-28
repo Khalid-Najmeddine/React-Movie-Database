@@ -1,3 +1,5 @@
+import { Movies } from "./types";
+
 export const basicFetch = async <returnType>(endpoint: string): Promise<returnType> => {
   const response = await fetch(endpoint);
 
@@ -9,6 +11,14 @@ export const basicFetch = async <returnType>(endpoint: string): Promise<returnTy
 
   return data;
 };
+
+// Fetch Functions for the movie page
+export const fetchMovies = async(search="", page=1): Promise<Movies> => {
+  return await basicFetch<Movies>(`/api/movies?search=${search}&page=${page}`);
+};
+
+
+
 
 
   
