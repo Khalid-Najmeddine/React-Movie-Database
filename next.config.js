@@ -3,8 +3,15 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["images.tmdb.org"],
-  }
-}
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "image.tmdb.org",
+        port: "",
+        pathname: "/t/p/**",
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
