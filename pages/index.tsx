@@ -1,15 +1,16 @@
-import React from 'react';
-import type { NextPage } from 'next'
+import React from "react";
+import Link from "next/link";
+import type { NextPage } from "next";
 // Fetch hook
-import { useFetchMovies } from '../API/fetchHooks';
+import { useFetchMovies } from "../API/fetchHooks";
 // Config
-import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from '../config';
+import { POSTER_SIZE, BACKDROP_SIZE, IMAGE_BASE_URL } from "../config";
 // Components
 import Header from "../components/Header/Header";
 import Hero from "../components/Hero/Hero";
 import Grid from "../components/Grid/Grid";
 import Card from "../components/Card/Card";
-import Spinner from '../components/Spinner/Spinner';
+import Spinner from "../components/Spinner/Spinner";
 
 const Home: NextPage = () => {
   const [query, setQuery] = React.useState("");
@@ -38,12 +39,14 @@ const Home: NextPage = () => {
         {data && data.pages 
           ? data.pages.map(page => 
             page.results.map(movie => (
-              <div key={movie.id}>
-                <Card 
-                  imgUrl={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : "/no-image.jpeg" }
-                  title={movie.original_title}
-                />
-              </div>
+              <Link key={movie.id} href={`/movie/${movie.id}`}>
+                <div className="cursor-pointer hover:opacity-80 duration-300" >
+                  <Card 
+                    imgUrl={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : "/no-image.jpeg" }
+                    title={movie.original_title}
+                    />
+                </div>
+              </Link>
             )) 
           ) 
         : null}
