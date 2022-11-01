@@ -14,10 +14,13 @@ import Spinner from '../components/Spinner/Spinner';
 const Home: NextPage = () => {
   const [query, setQuery] = React.useState("");
   const {data, fetchNextPage, isLoading, isFetching, isError} = useFetchMovies(query);
-  console.log(data);
+  const handleScroll = (event: React.UIEvent<HTMLElement>) => {
+    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+    if (scrollHeight - scrollTop === clientHeight) fetchNextPage();
+  };
 
   return ( 
-    <main className="relative h-screen overflow-y-scroll"> 
+    <main className="relative h-screen overflow-y-scroll" onScroll={handleScroll}> 
       <Header setQuery={setQuery}/>
       {!query && data && data.pages ? (
         <Hero 
@@ -45,7 +48,7 @@ const Home: NextPage = () => {
           ) 
         : null}
       </Grid>
-      <Spinner />
+      {isLoading || isFetching ? <Spinner /> : null}
     </main>
   )
 }
