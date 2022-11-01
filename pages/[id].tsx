@@ -20,8 +20,19 @@ type Props = {
 const Movie: NextPage<Props> = ({movie, cast, directors}) => (
   <main>
     <Header />
-    <Breadcrumb title={movie.original_title}/>
-    <MovieInfo />
+    <Breadcrumb title={movie.original_title}/> 
+    <MovieInfo 
+      thumbUrl={movie.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}` : "/no-image.jpeg"} 
+      rating={movie.vote_average}
+      year={movie.release_date.split("-")[0]}
+      backgroundImgUrl={movie.backdrop_path ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}` : "/no-image.jpeg"}
+      title={movie.original_title}
+      summary={movie.overview}
+      directors={directors}
+      time={movie.runtime}
+      budget={movie.budget}
+      revenue={movie.revenue}
+    />
     <Grid>
       <Card />
     </Grid>
