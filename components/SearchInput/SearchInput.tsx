@@ -30,7 +30,7 @@ const SearchInput = ({ setQuery }: Props) => {
         onChange={handleInput}
       />
       <div className="absolute right-4 top-8">
-        <Image className="w-auto h-auto" width="30" height="32" src="/tmdb-logo.svg" alt="tmdb-logo" priority/>
+        <Image width="30" height="32" src="/tmdb-logo.svg" alt="tmdb-logo" />
       </div>
     </>
   );
