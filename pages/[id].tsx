@@ -20,7 +20,7 @@ type Props = {
 const Movie: NextPage<Props> = ({movie, cast, directors}) => (
   <main>
     <Header />
-    <Breadcrumb />
+    <Breadcrumb title={movie.original_title}/>
     <MovieInfo />
     <Grid>
       <Card />
@@ -53,5 +53,3 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: "blocking",
   };
 }
-
-
