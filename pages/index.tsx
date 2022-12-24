@@ -13,12 +13,15 @@ import Card from "../components/Card/Card";
 import Spinner from "../components/Spinner/Spinner";
 
 const Home: NextPage = () => {
+
   const [query, setQuery] = React.useState("");
   const {data, fetchNextPage, isLoading, isFetching, isError} = useFetchMovies(query);
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
     if (scrollHeight - scrollTop === clientHeight) fetchNextPage();
   };
+
+  if (isError) return <div>Oh Noooo, something went wrong...</div>;
 
   return ( 
     <main className="relative h-screen overflow-y-scroll" onScroll={handleScroll}> 
